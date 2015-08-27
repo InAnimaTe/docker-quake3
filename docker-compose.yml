@@ -1,0 +1,7 @@
+quake3:
+    image: jberrenberg/quake3
+    restart: always
+    ports:
+        - "27960:27960/udp"
+    volumes:
+        - /home/username/pak0.pk3:/opt/quake3/baseq3/pak0.pk3
