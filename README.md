@@ -6,13 +6,13 @@
 
 A fancy containerized [quake3](https://en.wikipedia.org/wiki/Quake_III_Arena) dedicated server container. Get playing in no time!
 
-The config I have here is fairly generic but somewhat specific to the overall stock way I play this game with my friends. 
+The config I have here is fairly generic but somewhat specific to the overall stock way I play this game with my friends. It's definitely ready to play!
 
-Ideally, you would setup the config how you want, build, launch, and play. I source from the excellent [jberrenberg/quake3](https://hub.docker.com/r/jberrenberg/quake3) image.
+Ideally, you would setup the config how you want, build, launch, and play. I sourced the `Dockerfile` and `bootstrap.sh` originally from the excellent [jberrenberg/quake3](https://hub.docker.com/r/jberrenberg/quake3) image.
 
 #### Launching
 
-There is an included `docker-compose.yml` that shows the best way to launch this container and how to take care of the core dependencies: the retail `pak0.pk3` and the port forward for `27960/udp`. 
+There is an included `docker-compose.yml.example` that shows the best way to launch this container and how to take care of the core dependencies: the retail `pak0.pk3` and the port forward for `27960/udp`. 
 
 > Note that the server.cfg must be added to the `/opt/quake3/baseq3` directory and then passed to `q3ded` simply as `server.cfg`. You **cannot** just pass a full path to the file.
 

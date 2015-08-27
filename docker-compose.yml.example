@@ -1,5 +1,5 @@
 quake3:
-    image: jberrenberg/quake3
+    image: inanimate/quake3
     restart: always
     ports:
         - "27960:27960/udp"
