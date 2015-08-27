@@ -1,6 +1,10 @@
+
+![Quake 3](https://raw.githubusercontent.com/InAnimaTe/docker-quake3/master/quake_logo.jpg)
+
+
 ### Quake 3 Dedicated Server Image
 
-A fancy containerized quake3 dedicated server container. Get playing in no time!
+A fancy containerized [quake3](https://en.wikipedia.org/wiki/Quake_III_Arena) dedicated server container. Get playing in no time!
 
 The config I have here is fairly generic but somewhat specific to the overall stock way I play this game with my friends. 
 
