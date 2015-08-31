@@ -22,7 +22,8 @@ WORKDIR /usr/share/games/quake3
 
 RUN wget "http://youfailit.net/pub/idgames/idstuff/quake3/linux/${ioquake_data}" && \
         chmod +x ${ioquake_data} && \
-        ./${ioquake_data} --tar xvf
+        ./${ioquake_data} --tar xvf && \
+        rm -rf ./${ioquake_data}
 
 USER Debian-quake3
 
