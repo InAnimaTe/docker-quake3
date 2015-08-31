@@ -3,7 +3,7 @@ FROM debian:jessie
 ## The Data Installer from ioquake3. See http://ioquake3.org/get-it/
 ENV ioquake_data ioquake3-q3a-1.32-9.run
 
-RUN echo "deb http://httpredir.debian.org/debian jessie contrib" && \
+RUN echo "deb http://httpredir.debian.org/debian jessie contrib" >> /etc/apt/sources.list && \
         apt-get update && \
         apt-get install -y quake3-server \
         wget && \
