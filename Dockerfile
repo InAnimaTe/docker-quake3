@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 ## The Data Installer from ioquake3. See http://ioquake3.org/get-it/
-ENV ioquake_data ioquake3-q3a-1.32-9.run
+ENV ioquake_data linuxq3apoint-1.32b-3.x86.run
 
 RUN echo "deb http://httpredir.debian.org/debian jessie contrib" >> /etc/apt/sources.list && \
         apt-get update && \
@@ -20,11 +20,9 @@ RUN rm -rf \
 
 WORKDIR /usr/share/games/quake3
 
-RUN wget "http://ioquake3.org/files/1.36/data/${ioquake_data}" && \
+RUN wget "http://youfailit.net/pub/idgames/idstuff/quake3/linux/${ioquake_data}" && \
         chmod +x ${ioquake_data} && \
         ./${ioquake_data} --tar xvf && \
-        tar xvf idpatchpk3s.tar -C ./baseq3 && \
-        tar xvf idtapatchpk3s.tar -C ./baseq3
 
 USER Debian-quake3
 
