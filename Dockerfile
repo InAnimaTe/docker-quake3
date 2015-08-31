@@ -20,7 +20,7 @@ RUN rm -rf \
 
 WORKDIR /usr/games
 
-RUN wget "http://ioquake3.org/files/1.36/data/${ioquake_data}.run" && \
+RUN wget "http://ioquake3.org/files/1.36/data/${ioquake_data}" && \
         chmod +x ${ioquake_data} && \
         ./${ioquake_data} --tar xvf -C /usr/share/games/quake3/
 
