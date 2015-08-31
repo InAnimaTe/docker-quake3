@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-## The Data Installer from ioquake3. See http://ioquake3.org/get-it/
+## The Data from the official point release.
 ENV ioquake_data linuxq3apoint-1.32b-3.x86.run
 
 RUN echo "deb http://httpredir.debian.org/debian jessie contrib" >> /etc/apt/sources.list && \
@@ -30,4 +30,4 @@ EXPOSE 27960/udp
 
 ENTRYPOINT ["/usr/games/quake3-server"]
 
-CMD ["+exec server.cfg +map q3dm19"]
+CMD ["+exec", "server.cfg", "+map", "q3dm19"]
