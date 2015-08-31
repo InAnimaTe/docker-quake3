@@ -18,11 +18,13 @@ RUN rm -rf \
         /var/lib/apt/lists/* \
         /usr/share/doc/*
 
-WORKDIR /usr/games
+WORKDIR /usr/share/games/quake3
 
 RUN wget "http://ioquake3.org/files/1.36/data/${ioquake_data}" && \
         chmod +x ${ioquake_data} && \
-        ./${ioquake_data} --tar xvf -C /usr/share/games/quake3/
+        ./${ioquake_data} --tar xvf && \
+        tar xvf idpatchpk3s.tar -C ./baseq3 && \
+        tar xvf idtapatchpk3s.tar -C ./baseq3
 
 USER Debian-quake3
 
