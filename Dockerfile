@@ -1,43 +1,33 @@
-FROM base/archlinux
+FROM debian:jessie
 
-# enable multilib and update base system
-RUN \
-  pacman -Sy --noconfirm reflector && \
-  reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist && \
-  echo "[multilib]" >> /etc/pacman.conf && \
-  echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf && \
-  pacman -Syu --noconfirm && \
-  pacman-db-upgrade 
+## The Data Installer from ioquake3. See http://ioquake3.org/get-it/
+ENV ioquake_data ioquake3-q3a-1.32-9.run
 
-# install dependencies
-RUN pacman -S --noconfirm  \
-  binutils \
-  fakeroot \
-  unzip \
-  lib32-libgl \
-  lib32-libxext 
+RUN echo "deb http://httpredir.debian.org/debian jessie contrib" && \
+        apt-get update && \
+        apt-get install -y quake3-server \
+        wget && \
+            apt-get clean
 
-# install quake 3
-RUN useradd -m q3a && \
-  curl -O https://aur.archlinux.org/packages/qu/quake3/quake3.tar.gz && \
-  tar xfz quake3.tar.gz -C /home/q3a/ && \
-  chown -R q3a /home/q3a/ && \
-  su q3a -c 'cd /home/q3a/quake3 && makepkg -f' && \
-  pacman --noconfirm -U /home/q3a/quake3/quake3-1.32c-2-x86_64.pkg.tar.xz && \
-  rm quake3.tar.gz 
-  
-# bootstraping 
-COPY bootstrap.sh /usr/bin/
-RUN chmod +x /usr/bin/bootstrap.sh 
+RUN rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/* \
+        /usr/share/locale/* \
+        /var/cache/debconf/*-old \
+        /var/lib/apt/lists/* \
+        /usr/share/doc/*
 
-# environment variables
-ENV FS_GAME='baseq3'
+WORKDIR /usr/games
+
+RUN wget "http://ioquake3.org/files/1.36/data/${ioquake_data}.run" && \
+        chmod +x ${ioquake_data} && \
+        ./${ioquake_data} --tar xvf -C /usr/share/games/quake3/
+
+USER Debian-quake3
 
 EXPOSE 27960/udp
-ENTRYPOINT  ["bootstrap.sh"]
 
-## Lets copy in our own config
-COPY server.cfg /opt/quake3/baseq3/server.cfg
+ENTRYPOINT ["/usr/games/quake3-server"]
 
-## Lets set the config variable so the bootstrap script will tell q3ded to use our config
-ENV CONFIG server.cfg
+CMD ["+exec server.cfg +map q3dm19"]
