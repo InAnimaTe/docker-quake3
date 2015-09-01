@@ -36,7 +36,7 @@ A comprehensive list of possibilities can be found [here](http://www.joz3d.net/h
 
 #### Maps
 
-I've set a default launch map of q3dm19, which is *Apocalypse Void*, one of the more popular deathmatch maps. This means you can just run the container straight off with no options and be playing instantly.
+I've set a default launch map of q3dm17, which is *The Longest Yard*, one of the more popular deathmatch maps. **This means you can just run the container straight off with no options and be playing instantly.**
 
 Ideally, we like to cycle through maps, starting from the first. It would be even better if we could set random for all *minus* a few we don't like (q3dm19 is not favorable to my tastes). See my included example `server.cfg` for how I cycle through maps.
 
