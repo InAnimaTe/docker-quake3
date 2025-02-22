@@ -22,7 +22,12 @@ There is an included `docker-compose.yml.example` that shows the best way to lau
 
 If you decide to build and incorporate your own `server.cfg`, as is recommended, make sure you modify the `image` source or just use `build: .` in your `docker-compose.yml` :)
 
-You could also just `-v ./server.cfg:/use/share/games/quake3/baseq3/server.cfg` on the command line.
+You could also just `-v ./server.cfg:/usr/share/games/quake3/baseq3/server.cfg` on the command line.
+
+Some examples and resources when it comes to building your own `server.cfg`:
+* https://ioquake3.org/help/sys-admin-guide/
+* https://github.com/MarioVilas/ioquake3-server-docker/blob/master/q3a/baseq3/server.cfg
+* https://github.com/yvesonline/ioquake3-server/blob/master/ioquake3/server.cfg
 
 ##### The command way
 
@@ -54,6 +59,18 @@ botadd Sorlag 2
 ```
 
 > Bot names must be one of the supported character names! They **cannot** be custom!
+
+#### RCON Quick Cheatsheet
+
+> Use chatgpt for more on how and what to use!
+
+* `/rconpassword <pass>` - login to server (after pushing tilde)
+* `/rcon map q3dm14` - change map
+* `/rcon g_gravity` - check the value of gravity
+* `/rcon exec bots.cfg` - load another config live (only applies settings that don't require server restart)
+* `/rcon map_restart` - reload the map, needed after some settings for them to apply
+* `/rcon kickbots` - kick all bots currently playing
+* `/rcon cvarlist` - show all active settings and variables in effect
 
 #### Troubleshooting
 
