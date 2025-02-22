@@ -1,16 +1,17 @@
 // Optimized for easy, simple and fun with a few friends
-// Some of these are still being tested and may not fully work in ioquake3
+// Note: These are best effort and were mostly verified with /rcon cvarlist.
+// However, some may not apply or are tuned differently because of ioquake3!
 
 seta sv_hostname "MyQuake3Server"
-seta sv_dedicated 1 // lan mode, use 2 for internet mode
+seta dedicated 1 // lan mode, use 2 for internet mode
 seta sv_maxclients 16
 seta g_motd "Welcome to My Quake3 Server."
 
 // Perf enhancements
-seta rate "25000"            // Max bandwidth for smooth gameplay
-seta snaps "125"             // Match server tick rate (125 for best)
-seta cl_maxpackets "125"     // Best responsiveness and smooth movement
-seta cl_packetdup "0"        // No redundant packets (use 1 if unstable connection)
+seta sv_fps 125 // set snaps on client to same value
+seta com_zoneMegs 128 // memory for engine code etc.
+seta com_hunkMegs 256 // main memory availability
+seta sv_maxrate 0 // dont set limit server-side
 
 // rcon and other server level configs
 seta rconpassword "mps"
@@ -18,25 +19,23 @@ seta bot_nochat 1
 seta g_log server.log
 seta logfile 3
 seta bot_enable 1
-// Allow voting for anything
-seta g_allowVote 1
-seta g_voteFlags 255
-
-// Game Type!
-seta g_gametype 3
-                                    //	0	Free for all
-                                    //	1	Tournament
-                                    //	2	Free for all deathmatch (Team Arena)
-                                    //	3	Team deathmatch
-                                    //	4	Capture the Flag
-                                    //	5	One Flag Capture        (Team Arena)
-                                    //	6	Overload                (Team Arena)
-                                    //	7	Harvester               (Team Arena)
+seta g_allowVote 1 // allow users to vote
 
 // Limits, either time, kills, or captured flags
 seta timelimit 7
 seta fraglimit 20
 seta capturelimit 2
+
+// Game Type!
+seta g_gametype 3
+            //	0	Free for all
+            //	1	Tournament
+            //	2	Free for all deathmatch (Team Arena)
+            //	3	Team deathmatch
+            //	4	Capture the Flag
+            //	5	One Flag Capture        (Team Arena)
+            //	6	Overload                (Team Arena)
+            //	7	Harvester               (Team Arena)
 
 // Map cycle
 set d1 "map q3dm1 ; set nextmap vstr d2"        // Arena Gate
@@ -57,22 +56,18 @@ set d15 "map q3dm15 ; set nextmap vstr d16"     // Demon Keep
 set d16 "map q3dm16 ; set nextmap vstr d17"     // The Bouncy Map
 set d17 "map q3dm17 ; set nextmap vstr d18"     // The Longest Yard
 set d18 "map q3dm18 ; set nextmap vstr d1"      // Space Chamber
-vstr d1 //launch
+vstr d1                                         // Launch the First Map!
 
 // Sets triggered after maps as to not get overwritten
-set g_gravity 500
-set g_quadfactor 4
-set g_weaponrespawn 0
-set g_weaponTeamRespawn 0 // needed for team deathmatch
-set g_weaponStay 1
-set g_infiniteAmmo 1
-set g_selfdamage 0
-set g_friendlyFire 0
-set g_forcerespawn 1
-set g_teamAutoJoin 1
-set g_teamForceBalance 1
-set g_inactivity 0
-set g_spectatorInactivity 0
+seta g_gravity 500 // default 800
+seta g_quadfactor 4 // multipler for quad something
+seta g_weaponrespawn 0 // no delay in weapon respawns
+seta g_weaponTeamRespawn 0 // needed for team deathmatch
+seta g_friendlyFire 0 // disables so you cant hurt your friends
+seta g_forcerespawn 1 // automatically respawns you back into the game when you die
+seta g_teamAutoJoin 1 // auto joins you to a team
+seta g_teamForceBalance 1 // auto balances teams
+seta g_inactivity 0 // no inactivity timer so you dont get kicked
 
 // Manual adding of bots. Syntax:
 //   addbot name [skill] [team] [delay]
