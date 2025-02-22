@@ -28,6 +28,7 @@ Some examples and resources when it comes to building your own `server.cfg`:
 * https://ioquake3.org/help/sys-admin-guide/
 * https://github.com/MarioVilas/ioquake3-server-docker/blob/master/q3a/baseq3/server.cfg
 * https://github.com/yvesonline/ioquake3-server/blob/master/ioquake3/server.cfg
+* [Setting up your client for optimal performance!](https://www.quakearea.com/blog/q3-smoothness-guide.html)
 
 ##### The command way
 
