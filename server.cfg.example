@@ -1,40 +1,83 @@
-seta sv_hostname "QuakeLAN"
+// Optimized for easy, simple and fun with a few friends
+// Some of these are still being tested and may not fully work in ioquake3
+
+seta sv_hostname "MyQuake3Server"
+seta sv_dedicated 1 // lan mode, use 2 for internet mode
 seta sv_maxclients 16
-seta g_motd "Welcome to the official QuakeLAN Server."
-seta g_quadfactor 4
-seta g_gametype 0
-seta timelimit 15
-seta fraglimit 30
-seta g_weaponrespawn 3
-seta g_inactivity 3000
-seta g_forcerespawn 0
-seta rconpassword "supersecurebr0"
+seta g_motd "Welcome to My Quake3 Server."
+
+// Perf enhancements
+seta rate "25000"            // Max bandwidth for smooth gameplay
+seta snaps "125"             // Match server tick rate (125 for best)
+seta cl_maxpackets "125"     // Best responsiveness and smooth movement
+seta cl_packetdup "0"        // No redundant packets (use 1 if unstable connection)
+
+// rcon and other server level configs
+seta rconpassword "mps"
 seta bot_nochat 1
 seta g_log server.log
 seta logfile 3
 seta bot_enable 1
+// Allow voting for anything
+seta g_allowVote 1
+seta g_voteFlags 255
 
-// Map setup..Note that q3dm19 is hated by me so not included.
-set d1 "map q3dm1 ; set nextmap vstr d2"
-set d2 "map q3dm2 ; set nextmap vstr d3"
-set d3 "map q3dm3 ; set nextmap vstr d4"
-set d4 "map q3dm4 ; set nextmap vstr d5"
-set d5 "map q3dm5 ; set nextmap vstr d6"
-set d6 "map q3dm6 ; set nextmap vstr d7"
-set d7 "map q3dm7 ; set nextmap vstr d8"
-set d8 "map q3dm8 ; set nextmap vstr d9"
-set d9 "map q3dm9 ; set nextmap vstr d10"
-set d10 "map q3dm10 ; set nextmap vstr d11"
-set d11 "map q3dm11 ; set nextmap vstr d12"
-set d12 "map q3dm12 ; set nextmap vstr d13"
-set d13 "map q3dm13 ; set nextmap vstr d14"
-set d14 "map q3dm14 ; set nextmap vstr d15"
-set d15 "map q3dm15 ; set nextmap vstr d16"
-set d16 "map q3dm16 ; set nextmap vstr d17"
-set d17 "map q3dm17 ; set nextmap vstr d18"
-set d18 "map q3dm18 ; set nextmap vstr d1"
-vstr d1
+// Game Type!
+seta g_gametype 3
+                                    //	0	Free for all
+                                    //	1	Tournament
+                                    //	2	Free for all deathmatch (Team Arena)
+                                    //	3	Team deathmatch
+                                    //	4	Capture the Flag
+                                    //	5	One Flag Capture        (Team Arena)
+                                    //	6	Overload                (Team Arena)
+                                    //	7	Harvester               (Team Arena)
 
-// and some bots
-addbot Major 2
+// Limits, either time, kills, or captured flags
+seta timelimit 7
+seta fraglimit 20
+seta capturelimit 2
+
+// Map cycle
+set d1 "map q3dm1 ; set nextmap vstr d2"        // Arena Gate
+set d2 "map q3dm2 ; set nextmap vstr d3"        // House of Pain
+set d3 "map q3dm3 ; set nextmap vstr d4"        // Arena of Death
+set d4 "map q3dm4 ; set nextmap vstr d5"        // The Place of Many Deaths
+set d5 "map q3dm5 ; set nextmap vstr d6"        // The Forgotten Place
+set d6 "map q3dm6 ; set nextmap vstr d7"        // The Campgrounds
+set d7 "map q3dm7 ; set nextmap vstr d8"        // Temple of Retribution
+set d8 "map q3dm8 ; set nextmap vstr d9"        // Brimstone Abbey
+set d9 "map q3dm9 ; set nextmap vstr d10"       // Hero's Keep
+set d10 "map q3dm10 ; set nextmap vstr d11"     // The Nameless Place
+set d11 "map q3dm11 ; set nextmap vstr d12"     // Deva Station
+set d12 "map q3dm12 ; set nextmap vstr d13"     // The Dredwerkz
+set d13 "map q3dm13 ; set nextmap vstr d14"     // Lost World
+set d14 "map q3dm14 ; set nextmap vstr d15"     // Grim Dungeons
+set d15 "map q3dm15 ; set nextmap vstr d16"     // Demon Keep
+set d16 "map q3dm16 ; set nextmap vstr d17"     // The Bouncy Map
+set d17 "map q3dm17 ; set nextmap vstr d18"     // The Longest Yard
+set d18 "map q3dm18 ; set nextmap vstr d1"      // Space Chamber
+vstr d1 //launch
+
+// Sets triggered after maps as to not get overwritten
+set g_gravity 500
+set g_quadfactor 4
+set g_weaponrespawn 0
+set g_weaponTeamRespawn 0 // needed for team deathmatch
+set g_weaponStay 1
+set g_infiniteAmmo 1
+set g_selfdamage 0
+set g_friendlyFire 0
+set g_forcerespawn 1
+set g_teamAutoJoin 1
+set g_teamForceBalance 1
+set g_inactivity 0
+set g_spectatorInactivity 0
+
+// Manual adding of bots. Syntax:
+//   addbot name [skill] [team] [delay]
+//addbot Major 2
 addbot Sorlag 2
+//addbot Grunt 2
+//addbot Slash 2
+addbot Patriot 2
